@@ -11,6 +11,39 @@
 |
 */
 
+//Route::get('/', function () {
+//   return view('welcome');
+//});
+
+Auth::routes();
+
+
+//FOR FRONT PAGE ROUTE
 Route::get('/', function () {
-    return view('welcome');
+   return view('welcome');
 });
+
+
+Route::get('/home', function () {
+    return view('contents/home');
+});
+
+Route::get('/items', function () {
+    return view('contents/all-items');
+});
+
+Route::get('/newsfeed', function () {
+    return view('contents/newsfeed');
+});
+
+Route::get('/profile', function () {
+    return view('contents/profile');
+});
+
+Route::get('/reviews', function () {
+    return view('contents.reviews');
+});
+
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
