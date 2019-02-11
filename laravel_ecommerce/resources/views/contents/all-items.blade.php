@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Item Page')
+@section('title', 'Item Booking')
 @section('data-page-id', 'items')
 
 @section('content')

@@ -13,68 +13,36 @@
                             <h2>Create Your Pahiram.ph Account</h2>
 
                             <div class="row">
-                                <!-- COMPANY ACCOUNT -->
+                                <!-- USER ACCOUNT -->
                                 <div class="col-md-6" style="margin-left: 12rem; text-align: center;">
                                     <hr>
-                                    <p >Creating Company&nbsp;Account?&nbsp;<a href="/company-register" style="text-decoration: none;"><strong style="color: #FF551F;">Sign Up Here!</strong></a></p>
+                                    <p >Creating User&nbsp;Account?&nbsp;<a href="/register" style="text-decoration: none;"><strong style="color: #FF551F;">Sign Up Here!</strong></a></p>
                                     <hr>
                                 </div>
                             </div>
                             <!-- INPUT USER LOGIN -->
                             <div class="row">
                                 <!-- FIRST NAME INPUT -->
-                                <div class="col-md-4" style="margin-left: 8rem;">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="First Name" required>
+                                <div class="col-md-8" style="margin-left: 8rem;">
+                                    <input id="company_name" type="text" class="form-control{{ $errors->has('company_name') ? ' is-invalid' : '' }}" name="company_name" value="{{ old('company_name') }}" placeholder="Company Name" required>
 
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('company_name'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('company_name') }}</strong>
                                     </span>
                                     @endif
-                                </div>
-                                <!-- MIDDLE NAME INPUT -->
-                                <div class="col-md-4">
-                                    <input id="middle_name" type="text" class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}" name="middle_name" value="{{ old('middle_name') }}" placeholder="Middle Name (optional)">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <!-- LAST NAME INPUT -->
-                                <div class="col-md-4" style="margin-left: 8rem;">
-                                    <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" required>
-
-                                    @if ($errors->has('last_name'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                                <!-- SUFFIX NAME INPUT -->
-                                <div class="col-md-4">
-                                    <input id="suffix" type="text" class="form-control" name="suffix" placeholder="Suffix (optional)">
-
                                 </div>
                             </div>
 
                             <div class="row">
                                 <!-- EMAIL ADDRESS NAME -->
-                                <div class="col-md-4" style="margin-left: 8rem;">
+                                <div class="col-md-8" style="margin-left: 8rem;">
                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email Address" required>
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
-
-                                <div class="col-md-4">
-                                    <input id="cellphone_number" type="text" class="form-control{{ $errors->has('cellphone_number') ? ' is-invalid' : '' }}" name="cellphone_number" placeholder="Cellphone Number" required>
-
-                                    @if ($errors->has('cellphone_number'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('cellphone_number') }}</strong>
-                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -101,7 +69,7 @@
                                 <!-- TERMS AND CONDITION -->
                                 <div class="col-md-6" style="margin-left: 12rem; text-align: center;">
                                     <hr>
-                                    <p >By clicking<strong style="color: #FF551F;">SIGN UP</strong> you automatically agree to our <strong style="color: #FF551F;">Terms and Conditions</strong></p>
+                                    <p >By clicking <strong style="color: #FF551F;">SIGN UP</strong> you automatically agree to our <strong style="color: #FF551F;">Terms and Conditions</strong></p>
                                     <hr>
                                 </div>
                             </div>

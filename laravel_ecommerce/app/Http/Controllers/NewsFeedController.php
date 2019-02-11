@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class NewsFeedController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,9 +22,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function index()
+    public function newsfeed()
     {
-        return view('contents/home');
+        return view('contents/newsfeed');
     }
 
 }
