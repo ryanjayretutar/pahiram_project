@@ -81,7 +81,7 @@ class ItemController extends Controller
          $new_item['image_path'] = $destination.$image_name;
          $item->create($new_item)->itemDetail()->create($item_detail);;
          Session::flash('success','New Item has been created');
-         return redirect(route('items.index'));
+         return response()->json('successfully added');
     }
 
     /**
