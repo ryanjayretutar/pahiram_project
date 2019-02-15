@@ -1,0 +1,175 @@
+*
+{
+    padding: 0;
+    margin: 0;
+}
+
+body
+{
+    background-color: #F2F4F4;
+}
+
+#navbar-two .container-fluid
+{
+    background-color: #DCDCDC;
+}
+
+.scrollable
+{
+    height:400px;
+    overflow-y: scroll;
+}
+
+@media (max-width: 800px)
+{
+    .breadcrumb
+    {
+        margin-right: 1rem; !important;
+    }
+}
+
+.arr-right .breadcrumb-item+.breadcrumb-item::before {
+
+    content: "›";
+
+    vertical-align:top;
+
+    color: #FF551F;
+
+    font-size:30px;
+
+    line-height:18px;
+
+}
+
+.input-group span,input,select
+{
+    margin: .5rem;
+}
+
+.sticky-offset {
+    top: 5rem;
+    padding: 0.5rem;
+}
+
+/** PROFILE PAGE CSS */
+.personal_banner
+{
+    background-image: url('../images/pahiram-carousel01.png');
+    background-repeat: no-repeat;
+}
+
+.personal_banner img
+{
+    height: 200px;
+    width: 200px;
+    margin-top: 280px;
+    border-radius: 50%;
+    margin-left: 2rem;
+}
+
+.personal_banner h3
+{
+    margin-top: 400px;
+    padding: 1rem;
+}
+
+.personal_banner button
+{
+    margin-top: 400px;
+    border: 1px solid #FF551F;
+    background-color: #FFFFFF;
+    color: #FF551F;
+}
+
+.personal_banner button:hover
+{
+    background-color: #FF551F;
+    color: #FFFFFF;
+    -webkit-transition: background-color 0.3s linear;
+    -ms-transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear;
+}
+
+.personal_banner .buttons
+{
+    padding: 1rem;
+}
+
+/** Profile Nav */
+.container .profile-nav a
+{
+    color: #FF551F;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.container .profile-nav .col-lg-3:hover
+{
+    background-color: #DCDCDC;
+    -webkit-transition: background-color 0.3s linear;
+    -ms-transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear;
+}
+
+.container .profile-nav .col-lg-3
+{
+    padding: 1rem;
+    border: 1px solid #DCDCDC;
+}
+
+/** Profile Feed */
+#profile-feed .row button
+{
+    color: #FF551F;
+    padding: 0.5rem;
+    border: 1px solid #FF551F;
+}
+
+#profile-feed .row button:hover
+{
+    background-color: #FF551F;
+    color: #FFFFFF;
+    -webkit-transition: background-color 0.3s linear;
+    -ms-transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear;
+}
+
+#profile-feed .col-lg-6 .media
+{
+    background-color: #F8F9F9;
+}
+
+
+@media (max-width: 500px)
+{
+    nav .container
+    {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    nav .container span,a:hover
+    {
+        color: #DCDCDC;
+    }
+
+    nav .container form
+    {
+        width: 80% !important;
+    }
+}
+
+.login
+{
+    background-image: url('../images/pahiram-carousel01.png');
+    padding: 4rem 8rem 4rem 8rem;
+    border-radius: 10px;
+}
+
+.login-form
+{
+    border-radius: 50px;
+    text-align: center;
+    padding: 3rem;
+    background-color: white;
+}
