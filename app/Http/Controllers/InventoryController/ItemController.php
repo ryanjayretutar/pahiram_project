@@ -66,19 +66,21 @@ class ItemController extends Controller
          $validated = $request->validated();
          $details = $detail->validated();
 
-         // echo dd($validated);
+         if($request->get('image_path'))
+         {
+          $image = $request->get('image_path');
+          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+          \Image::make($request->get('image_path'))->save(public_path('images/').$name);
+         }
+
          $item = new Item;
 
          $date = ['added_date' => date('Y-m-d H:i:s')];
          $user_id = ['user_id' => 1];
-         $new_item = array_merge($validated, $date);
-         $item_detail = array_merge($details, $user_id);
-         $image = $request->file('image_path');
-        $image_name = time() . "." .$image->getClientOriginalExtension();
-        $destination = "images/";
-        $image->move($destination, $image_name);
-
-         $new_item['image_path'] = $destination.$image_name;
+         $img = ['image_path' => $name];
+         $new = array_merge($validated, $date);
+         $new_item = array_merge($new, $user_id);
+         $item_detail = array_merge($details, $img);
          $item->create($new_item)->itemDetail()->create($item_detail);;
          Session::flash('success','New Item has been created');
          return response()->json('successfully added');
@@ -101,11 +103,19 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit($id)
     {
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('inventory.items.edit_item', compact('categories', 'brands', 'item'));
+        // $categories = Category::all();
+        $item = Item::where('id', $id)->with('category', 'brand')->first();
+
+        // $item_cb = collect(["category" => $item->category->category_name, "brand" => $item->brand->brand_name]);
+
+
+        // return view('inventory.items.edit_item', compact('categories', 'brands', 'item'));
+        $category = Category::all();
+        $brand = Brand::all();
+        $collection = collect(["categories" => $category, "brands" => $brand , "item" => $item]);
+        return new PostCollection($collection);
     }
 
     /**

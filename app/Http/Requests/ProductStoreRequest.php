@@ -24,7 +24,6 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
        return $validated =  [
-            'user_id' => 'required|numeric',
             'category_id' => 'required|numeric',
             'brand_id' => 'required|numeric',
             'product_name' => 'required|string|max:50',
@@ -36,7 +35,6 @@ class ProductStoreRequest extends FormRequest
     {
         return [
             'category_id.required' => 'Select a Category for this item',
-            'user_id.required' => 'Select a Category for this item',
             'brand_id.required' => 'Select the brand of this item',
             'product_name.required' => 'Enter the name of the product',
             'product_price.required' => 'Set a price for this product',

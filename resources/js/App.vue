@@ -3,10 +3,10 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Home</router-link>
+          <router-link to="/product" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/create" class="nav-link">Create Post</router-link>
+          <router-link to="/product/create" class="nav-link">Create Post</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/posts" class="nav-link">Posts</router-link>
@@ -20,9 +20,7 @@
 </template>
 
 <style>
-    .fade-enter-active, .fade-leave-active {
-      transition: opacity .5s
-    }
+
     .fade-enter, .fade-leave-active {
       opacity: 0
     }
