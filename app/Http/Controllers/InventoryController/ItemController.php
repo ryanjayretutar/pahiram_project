@@ -11,6 +11,7 @@ use App\Http\Resources\PostCollection;
 use App\Category;
 use App\Brand;
 use App\Item;
+use Auth;
 use Session;
 
 class ItemController extends Controller
@@ -23,11 +24,12 @@ class ItemController extends Controller
     public function index()
     {
         // $items = Item::all();
-        $response = Item::with('category', 'brand')->get();
         // $response['categories'] = $items->category;
         // return view('inventory.items.all_items', compact('items'));
-        return new PostCollection($response);
 
+        /*Fetch data from Items table with category, brand and itemDetail relationship*/
+        $response = Item::with('category', 'brand', 'itemDetail')->get();
+        return new PostCollection($response);
     }
 
     /**
@@ -66,9 +68,9 @@ class ItemController extends Controller
          $validated = $request->validated();
          $details = $detail->validated();
 
-         if($request->get('image_path'))
+         if($detail->get('image_path'))
          {
-          $image = $request->get('image_path');
+          $image = $detail->get('image_path');
           $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
           \Image::make($request->get('image_path'))->save(public_path('images/').$name);
          }
@@ -76,7 +78,7 @@ class ItemController extends Controller
          $item = new Item;
 
          $date = ['added_date' => date('Y-m-d H:i:s')];
-         $user_id = ['user_id' => 1];
+         $user_id = ['user_id' => Auth::id()];
          $img = ['image_path' => $name];
          $new = array_merge($validated, $date);
          $new_item = array_merge($new, $user_id);
@@ -106,7 +108,7 @@ class ItemController extends Controller
     public function edit($id)
     {
         // $categories = Category::all();
-        $item = Item::where('id', $id)->with('category', 'brand')->first();
+        $item = Item::where('id', $id)->with('category', 'brand', 'itemDetail')->first();
 
         // $item_cb = collect(["category" => $item->category->category_name, "brand" => $item->brand->brand_name]);
 
@@ -125,13 +127,31 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductStoreRequest $request, Item $item)
-    {
+    public function update(ProductStoreRequest $request,ItemDetailRequest $detail, Item $item)
+    { 
+        // return $detail->validated();
+        // $val = array_merge( $request->validated(), $detail->validated());
 
-        $validated = $request->validated();
-         $item->update($validated);
-         Session::flash('success','Item has been updated');
-         return redirect(route('items.index'));
+
+        return gettype($detail->get('image_path'));
+         // $validated = $request->validated();
+         // $details = $detail->validated();
+
+         // if($detail->get('image_path') && ($detail->get('image_path')))
+         // {
+         //  $image = $detail->get('image_path');
+         //  $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+         //  \Image::make($detail->get('image_path'))->save(public_path('images/').$name);
+         // }
+         // else{
+         //     $name = $detail->get('image_path');
+         // }
+         // $img = ['image_path' => $name];
+         // $item_detail = array_merge($details, $img);
+         // $item->update($validated);
+         // $item->itemDetail()->update($item_detail);;
+         // Session::flash('success','Item has been updated');
+         // return response()->json('Successfully Updated');
     }
 
     /**

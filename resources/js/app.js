@@ -22,11 +22,12 @@ Vue.use(VueAxios, axios);
 import HomeComponent from './components/HomeComponent.vue';
 import CreateItemComponent from './components/CreateItemComponent.vue';
 import EditItemComponent from './components/EditItemComponent.vue';
+import ReserveItemComponent from './components/ReserveItemComponent.vue';
 
 const routes = [
   {
       name: 'product',
-      path: '/product',
+      path: '/product/all',
       component: HomeComponent
   },
   {
@@ -38,6 +39,11 @@ const routes = [
       name: 'edit',
       path: '/product/:id',
       component: EditItemComponent
+  },
+  {
+      name: 'reserve',
+      path: '/product/:id/reserve',
+      component: ReserveItemComponent
   }
 ];
 

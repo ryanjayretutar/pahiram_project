@@ -1,32 +1,23 @@
 <template>
 
-	<div class="row">
-			<div class="col-lg-6">
-				
-				<table class="table-info">
-					<tr class="py-3">
-						<th>Product Name</th>
-						<th>Price</th>
-						<th>Category</th>
-						<th>Brand</th>
-						<th>Quantity</th>
-						<th>Action</th>
-
-					</tr>
-					
-					<tr v-for="item in items" :key="item.id">
-	                    <!-- <td>{{ item.id }}</td> -->
-	                    <td>{{ item.product_name }}</td>
-	                    <td>{{ item.product_name }}</td>
-	                    <td>{{ item.category.category_name }}</td>
-	                    <td>{{ item.brand.brand_name }}</td>
-	                    <td>{{ item.product_stock }}</td>
-	                
-	                    <td><router-link :to="{name: 'edit', params: { id: item.id }}" class="btn btn-primary">Edit</router-link></td>
-	                    <td><button class="btn btn-danger">Delete</button></td>
-                	</tr>
-					
-				</table>
+	
+		<div class="row">
+			<div class="card-columns">
+				<div class="card text-center" v-for="item in items" :key="item.id">
+				  <div class="card-header">
+				    {{ item.category.category_name }}
+				  </div>
+				  <img  :src="'/images/' + item.item_detail.image_path " class="img-responsive card-img-top" >
+				  <div class="card-body">
+				    <h5 class="card-title">{{item.product_name}}</h5>
+				    <p class="card-text">{{item.item_detail.description}}</p>
+				    <router-link :to="{name: 'edit', params: { id: item.id }}" class="btn btn-primary">View</router-link>
+				    <router-link :to="{name: 'reserve', params: { id: item.id }}" class="btn btn-primary">View</router-link>
+				  </div>
+				  <div class="card-footer text-muted">
+				    2 days ago
+				  </div>
+				</div>
 			</div>
 		</div>
 
@@ -47,3 +38,6 @@
     }
   }
 </script>
+
+
+

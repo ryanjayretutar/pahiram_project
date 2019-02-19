@@ -110,10 +110,10 @@ Schema::defaultStringLength(191);
 
 Route::resource('/items', 'InventoryController\ItemController');
 Route::resource('/categories', 'InventoryController\CategoryController');
+Route::resource('/brands', 'InventoryController\BrandController');
 Route::post('register', 'Auth\RegisterController@register')->name('register.post');
-Route::get('/items/{id}', 'InventoryController\ItemController@show')->where('id', '.*');
 
-Route::get('/{any}', function () {
+Route::get('/product/{any}', function () {
   return view('inventory.items.home');
 })->where('any', '.*');
 
