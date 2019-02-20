@@ -107,13 +107,7 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        // $categories = Category::all();
-        $item = Item::where('id', $id)->with('category', 'brand', 'itemDetail')->first();
-
-        // $item_cb = collect(["category" => $item->category->category_name, "brand" => $item->brand->brand_name]);
-
-
-        // return view('inventory.items.edit_item', compact('categories', 'brands', 'item'));
+        $item = Item::where('id', $id)->with('category', 'brand', 'itemDetail','user')->first();
         $category = Category::all();
         $brand = Brand::all();
         $collection = collect(["categories" => $category, "brands" => $brand , "item" => $item]);
@@ -129,29 +123,24 @@ class ItemController extends Controller
      */
     public function update(ProductStoreRequest $request,ItemDetailRequest $detail, Item $item)
     { 
-        // return $detail->validated();
-        // $val = array_merge( $request->validated(), $detail->validated());
+         $validated = $request->validated();
+         $details = $detail->validated();
 
-
-        return gettype($detail->get('image_path'));
-         // $validated = $request->validated();
-         // $details = $detail->validated();
-
-         // if($detail->get('image_path') && ($detail->get('image_path')))
-         // {
-         //  $image = $detail->get('image_path');
-         //  $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-         //  \Image::make($detail->get('image_path'))->save(public_path('images/').$name);
-         // }
-         // else{
-         //     $name = $detail->get('image_path');
-         // }
-         // $img = ['image_path' => $name];
-         // $item_detail = array_merge($details, $img);
-         // $item->update($validated);
-         // $item->itemDetail()->update($item_detail);;
-         // Session::flash('success','Item has been updated');
-         // return response()->json('Successfully Updated');
+         if($detail->get('image_path') && ($detail->get('image_path')))
+         {
+          $image = $detail->get('image_path');
+          $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+          \Image::make($detail->get('image_path'))->save(public_path('images/').$name);
+         }
+         else{
+             $name = $detail->get('image_path');
+         }
+         $img = ['image_path' => $name];
+         $item_detail = array_merge($details, $img);
+         $item->update($validated);
+         $item->itemDetail()->update($item_detail);;
+         Session::flash('success','Item has been updated');
+         return response()->json('Successfully Updated');
     }
 
     /**
@@ -167,12 +156,10 @@ class ItemController extends Controller
         return redirect(route('items.index'));
     }
 
-     public function filter(ProductStoreRequest $request)
-    {
-        
-        $item->delete();
-        Session::flash('success','Item has been deleted');
-        return redirect(route('items.index'));
+    public function search($search){
+
+        $items =  Item::where('product_name', 'like','%' .  $search . '%')->with('category', 'brand', 'itemDetail')->get();
+        return new PostCollection($items);
     }
 
 }

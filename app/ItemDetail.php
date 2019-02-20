@@ -14,6 +14,6 @@ class ItemDetail extends Model
 			'model'
 	];
     public function item(){
-    	return $this->belongsTo('App\Item');
+    	return $this->belongsTo(Item::class);
     }
 }

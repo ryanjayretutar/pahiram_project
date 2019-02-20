@@ -1,106 +1,68 @@
 <template>
 
 		<form @submit.prevent="updatePost" enctype="multipart/form-data">
+
 		<div class="row">
-			
-				<!-- {{ csrf_field()}} -->
-				<div class="col-6">
-				<!-- 	@if(Session::has('success'))
-						<div class="alert alert-success" role="alert">
-						  {{Session::get('success')}}
-						</div>
-					@elseif ($errors->any())
-					    <div class="alert alert-danger">
-					        <ul>
-					            @foreach ($errors->all() as $error)
-					                <li>{{ $error }}</li>
-					            @endforeach
-					        </ul>
-					    </div>
-					@endif -->
-					
-
-
-
-					
-					<div class="form-group">					
-						<label for="" class="form-control-label">Categories</label>
-						<select v-model="item.item.category_id" name="category_id" class="form-control" >
-							<option :value="item.item.category.id" :selected="true">{{item.item.category.category_name}}</option>
-							<option v-if="category.id !== item.item.category.id" v-for="category in item.categories" :value="category.id" >{{ category.category_name}}</option>
-							
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="" class="form-control-label">Brands</label>
-						
-						<select name="brand_id" v-model="item.item.brand_id" class="form-control" >
-							<option :value="item.item.brand.id" :selected="true">{{item.item.brand.brand_name}}</option>
-							<option v-if="brand.id !== item.item.brand.id" v-for="brand in item.brands" :value="brand.id" >{{ brand.brand_name}}</option>
-
-					</select>
-					</div>
-					<div class="form-group">
-						<label for="" class="form-control-label">Product Name</label>
-						<input v-model="item.item.product_name"  name="product_name" type="text" class="form-control form-control-lg ">
-					</div>
-					<div class="form-group">
-						<label for="" class="form-control-label">Product Price</label>
-						<input v-model="item.item.product_price" name="product_price"  type="text" class="form-control form-control-lg ">
-					</div>
-					<div class="form-group">
-						<label for="" class="form-control-label">Product Stock</label>
-						<input v-model="item.item.product_stock" name="product_stock" type="number" class="form-control form-control-lg ">
-					</div>
-
+			<div class="col-6">
+				<div class="col-md-4 offset-md-3" v-if="image">
+	                  <img :src="'/images/' + image" class="img-responsive" height="250" width="200">
+	            </div>
+				<h1 class="text-center">{{ item.item.product_name}}</h1>
+				<div class="row mt-3">
+					<h5 class="col-md-3">Owned By:</h5>
+					<p class="col-md-3">{{ item.item.user.user_details.first_name}} {{ item.item.user.user_details.last_name}}</p>
 				</div>
-					
-
-				
-				<div class="col-6">
-				<div class="col-md-3" v-if="image">
-                  <img :src="'/images/' + image" class="img-responsive" height="70" width="90">
-               </div>
-
-					<div class="form-group">
-
-						<label for="" class="form-control-label">Upload Image</label>
-						<input type="file" name="image_path" v-on:change="onImageChange" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="" class="form-control-label">Description</label>
-						<textarea v-model="item.item.item_detail.description" name="description" class="form-control form-control-lg " rows="3"></textarea>
-					</div>
-					<div class="form-group">
-						<label for="" class="form-control-label">Item Value</label>
-						<input v-model="item.item.item_detail.item_value" name="item_value" type="text" class="form-control form-control-lg ">
-					</div>
-					<div class="form-group">
-						<label for="" class="form-control-label">Model</label>
-						<input v-model="item.item.item_detail.model" name="model" type="text" class="form-control form-control-lg ">
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Save Product" class="btn btn-primary" >
-					</div>
+				<div class="row mt-3">
+					<h5 class="col-md-3">Brand</h5>
+					<p class="col-md-3">{{ item.item.brand.brand_name}}</p>
+				</div>
+				<div class="row mt-3">
+					<h5 class="col-md-3">Category</h5>
+					<p class="col-md-3">{{ item.item.category.category_name}}</p>
+				</div>
+				<div class="row mt-3">
+					<h5 class="col-md-3">Description</h5>
+					<p class="col-md-9">{{ item.item.item_detail.description}}</p>
+				</div>
+				<div class="row mt-3">
+					<h5 class="col-md-3">Available as early as</h5>
+					<p class="col-md-9">March 2, 2019</p>
+				</div>
+				<div class="row mt-3">
+					<h5 class="col-md-3">Model</h5>
+					<p class="col-md-9">{{ item.item.item_detail.model}}</p>
 				</div>
 			</div>
-		</form>
-					
-				
-			
-					</div>
+			<div class="col-6">
+				<div class="form-group row">
+				  <label for="example-datetime-local-input" class="col-2 col-form-label">Reserve On</label>
+				  <div class="col-10">
+				    <input class="form-control" type="datetime-local" id="example-datetime-local-input" >
+				  </div>
+				</div>
+				<div class="form-group row">
+				  <label for="example-datetime-local-input" class="col-2 col-form-label">Rent Until</label>
+				  <div class="col-10">
+				    <input class="form-control" type="datetime-local"  id="example-datetime-local-input">
+				  </div>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Reserve Item" class="btn btn-primary" >
+				</div>
+			</div>
+			</div>
+		</form>	
+		</div>
 	</div>
 </template>
 
 <script>
- 
-
   export default {
     data(){
-    return {
-      item:{},
-      image: ''
-    }
+	    return {
+	      item:{},
+	      image: ''
+	    }
     },
     created() {
        let uri = "http://127.0.0.1:8000/items/" + this.$route.params.id +  "/edit";
@@ -130,7 +92,6 @@
 	    this.item.item.description = this.item.item.item_detail.description;
 	    this.item.item.item_value = this.item.item.item_detail.item_value;
 	    this.item.item.model = this.item.item.item_detail.model;
-	    alert(this.item.item.product_name);
 	    this.axios.put(uri, this.item.item).then((response) => {
 	       this.$router.push({name: 'product'});
 	    });

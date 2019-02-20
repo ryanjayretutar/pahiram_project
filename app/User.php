@@ -30,10 +30,15 @@ class User extends Authenticatable
 
     public function user_details()
     {
-        return $this->hasOne('App\UserDetail');
+        return $this->hasOne(UserDetail::class);
     }
+
     public function user_level()
     {
-        return $this->hasOne('App\UserLevel');
+        return $this->hasOne(UserLevel::class);
+    }
+    public function itemReservation()
+    {
+        return $this->hasMany(ItemReservation::class);
     }
 }

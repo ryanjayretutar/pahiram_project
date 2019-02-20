@@ -24,6 +24,7 @@ import CreateItemComponent from './components/CreateItemComponent.vue';
 import EditItemComponent from './components/EditItemComponent.vue';
 import ReserveItemComponent from './components/ReserveItemComponent.vue';
 
+
 const routes = [
   {
       name: 'product',

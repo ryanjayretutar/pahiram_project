@@ -111,6 +111,8 @@ Schema::defaultStringLength(191);
 Route::resource('/items', 'InventoryController\ItemController');
 Route::resource('/categories', 'InventoryController\CategoryController');
 Route::resource('/brands', 'InventoryController\BrandController');
+Route::resource('/reservations', 'ItemReservationController');
+Route::get('/items/search/{search}', 'InventoryController\ItemController@search');
 Route::post('register', 'Auth\RegisterController@register')->name('register.post');
 
 Route::get('/product/{any}', function () {

@@ -17,18 +17,22 @@ class Item extends Model
 			'p_status'
 		];
     public function category(){
-    	return $this->belongsTo('App\Category');
+    	return $this->belongsTo(Category::class);
     }
 
     public function user(){
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo(User::class)->with('user_details');
     }
 
     public function brand(){
-    	return $this->belongsTo('App\Brand');
+    	return $this->belongsTo(Brand::class);
     }
 
     public function itemDetail(){
-        return $this->hasOne('App\ItemDetail');
+        return $this->hasOne(ItemDetail::class);
+    }
+
+    public function itemReservation(){
+        return $this->hasMany(ItemReservation::class);
     }
 }
